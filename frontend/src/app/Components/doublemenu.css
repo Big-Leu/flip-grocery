@@ -1,0 +1,33 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+
+.shadow-f {
+    box-shadow: 2px -20px 13px 0px #e9e6e6 ;
+}
+
+.shadow-outside {
+    box-shadow: -4px -1px 11px 8px #e9e6e6;
+}
+
+*{
+font-family: "Inter";
+}
+
+.options{
+    padding: 5px 10px;
+}
+.options:hover,.selected-option{
+   background-color: #f5f5f5;
+    font-weight: 600;
+    color: #2874f0;
+}
+
+.s-m-heading{
+    color: #a3a3a3;
+    font-size: 12px;
+    font-weight: 600;
+    position: relative;
+    top: -8px;
+    left: -10px;
+}

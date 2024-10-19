@@ -1,16 +1,20 @@
-import React from 'react';
+"use client"
+import React,{useState} from 'react';
 import evv from '../images/chevron_right_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg'
 import vv from '../images/right1.svg'
 import Image from "next/image";
+import Menu from './menu';
 const Navbar = () => {
+  const temp = true
+  const [open, setOpen] = useState(false);
   return (
     <nav className="bg-green-600 text-white">
       <div className="container ml-[3rem]  justify-items-end flex items-center">
         <h1 className="text-2xl font-bold">Grocery </h1>
         <div className="relative min-w-[40%] ">
         <input 
-          className="pl-10 pr-4 mx-2 mt-1 min-w-full min-h-[2rem] text-black drop-shadow-xl" 
-          type="search" 
+          className="pl-10 pr-4 mx-2 mt-1 min-w-full min-h-[2rem] text-black drop-shadow-xl focus:outline-none" 
+          type="text" 
           id="search-grocery" 
           placeholder="Search grocery products" 
         />
@@ -34,21 +38,31 @@ const Navbar = () => {
             </div>
             
             <label>Delivery to 781015</label>
-            <div className='-rotate-90  hover:rotate-90'>
+            <div className='-rotate-90  hover:rotate-90 transform transition-transform duration-300 ease-in-out'>
                 <Image  src={evv} alt="" />
             </div>
           </div>
           <div className='flex space-x-1 font-bold'>      
             <label>UserProfile</label>
-            <div className='-rotate-90  hover:rotate-90'>
+            <div className='-rotate-90  hover:rotate-90 transform transition-transform duration-300 ease-in-out'>
               <Image  src={evv} alt="" />
             </div>
           </div>
-          <div className='flex space-x-1 font-bold'>       
+          <div className='relative flex space-x-1 font-bold'
+                onMouseEnter={() => setOpen(true)}
+                onMouseLeave={() => setOpen(false)} 
+          >       
             <label>More</label>
-            <div className='-rotate-90  hover:rotate-90'>
+            <div className='-rotate-90  hover:rotate-90 transform transition-transform duration-300 ease-in-out'>
                 <Image  src={evv} alt="" />
             </div>
+                {open && (
+                  <div className=''>
+                    <div className="absolute top-1 left-0 right-0 h-6 bg-transparent" />
+                    <div className="absolute left-1/2 top-[2rem] h-4 w-4 -translate-x-1/2 -translate-y-1/2 rotate-45 bg-white" />
+                    <Menu/>
+                  </div>
+            )}
           </div>
           <div className='flex space-x-2 font-bold'>       
             <div className='mt-[.3rem]'>
