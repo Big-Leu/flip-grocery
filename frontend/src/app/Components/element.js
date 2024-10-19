@@ -20,7 +20,7 @@ const Element = ({img,title}) => {
           <label className='font-koulen mt-[.2rem]'>{title}</label>
           <Image 
             src={ss} 
-            className='filter brightness-0 hover:brightness-100  hover:rotate-90 transform transition-transform duration-300 ease-in-out hover:scale-110' 
+            className={`filter brightness-0 hover:brightness-100  hover:rotate-90 ${open ?"rotate-90 brightness-100 ":"" }transform transition-transform duration-300 ease-in-out hover:scale-110`}
             alt="" 
           />
                 {open && (
