@@ -3,10 +3,11 @@ import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import in2 from "../images/in2.svg"
 import Image from "next/image";
+import Link from "next/link";
 const data = "Notification Preferences Become a Seller 24x7 Customer Care Advertise Download App"
 const Menu = () => {
 
-  
+
 
   return (
          <div className=" absolute z-50 top-[2rem]  left-[-5rem] w-[250px] bg-white h-auto text-[#878787] flex-col rounded-sm backdrop-blur-sm drop-shadow-lg">
@@ -90,7 +91,9 @@ const Menu = () => {
                </div>
                <div  className="flex flex-row space-x-4 px-[1rem]  hover:bg-stone-100 py-3 min-w-[250px]">
                   <Image src={in2} width={15} height={10} alt="inventry icon"/>
-                  <label className=" text-sm">Inventry</label>
+                  <Link href="/inventry">
+                    <label className=" text-sm">Inventry</label>
+                  </Link>
                </div>
          </div>
   );

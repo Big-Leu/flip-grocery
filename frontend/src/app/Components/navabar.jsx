@@ -4,13 +4,16 @@ import evv from '../images/chevron_right_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.
 import vv from '../images/right1.svg'
 import Image from "next/image";
 import Menu from './menu';
+import Link from 'next/link';
 const Navbar = () => {
   const temp = true
   const [open, setOpen] = useState(false);
   return (
     <nav className="bg-green-600 text-white">
       <div className="container ml-[3rem]  justify-items-end flex items-center">
-        <h1 className="text-2xl font-bold">Grocery </h1>
+        <Link href="/">
+          <h1 className="text-2xl font-bold">Grocery </h1>
+        </Link>
         <div className="relative min-w-[40%] ">
         <input 
           className="pl-10 pr-4 mx-2 mt-1 min-w-full min-h-[2rem] text-black drop-shadow-xl focus:outline-none" 

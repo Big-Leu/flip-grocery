@@ -250,7 +250,7 @@ const VideoStream = () => {
                 canvasRef.current.height = videoHeight;
     
                 const predictions = await model.detect(video);
-                console.log(predictions);
+                // console.log(predictions);
     
                 const ctx = canvasRef.current.getContext("2d");
                 ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
@@ -286,7 +286,7 @@ const VideoStream = () => {
                     const frameData = croppedCanvas.toDataURL("image/jpeg");
     
                     // Send frame data via WebSocket
-                    sendMessage1(JSON.stringify({ image: frameData, class: box['class'] }));
+                    sendMessage(JSON.stringify({ image: frameData, class: box['class'] }));
                 }
     
                 const fps = 60;
@@ -417,9 +417,9 @@ const VideoStream = () => {
           <div className=' text-black'>
             <div className='mt-[1rem] font-koulen'>
               <h1 className='ml-1'>Angle One</h1>
-              <select  onChange={(e) => setSelectedDeviceId1(e.target.value)} value={selectedDeviceId1}  className='mb-4'>
+              <select  onChange={(e) => setSelectedDeviceId1(e.target.value)} value={selectedDeviceId1}  className='mb-4 font-koulen'>
                 {devices.map((device) => (
-                  <option key={device.deviceId} value={device.deviceId}>
+                  <option key={device.deviceId} value={device.deviceId} className='font-koulen'>
                     {device.label || `Camera ${device.deviceId}`}
                   </option>
                 ))}
@@ -441,9 +441,9 @@ const VideoStream = () => {
           <div className='text-black'>
             <div className='mt-[1rem] font-koulen'>
             <h1 className='ml-1'>Angle Two</h1>
-              <select  onChange={(e) => setSelectedDeviceId2(e.target.value)} value={selectedDeviceId2}  className='mb-4'>
+              <select  onChange={(e) => setSelectedDeviceId2(e.target.value)} value={selectedDeviceId2}  className='mb-4 font-koulen'>
                 {devices.map((device) => (
-                  <option key={device.deviceId} value={device.deviceId}>
+                  <option key={device.deviceId} value={device.deviceId} className='font-koulen'>
                     {device.label || `Camera ${device.deviceId}`}
                   </option>
                 ))}
@@ -465,9 +465,9 @@ const VideoStream = () => {
           <div className='text-black'>
             <div className='mt-[1rem] font-koulen'>
             <h1 className='ml-1'>Angle Three</h1>
-              <select  onChange={(e) => setSelectedDeviceId3(e.target.value)} value={selectedDeviceId3}  className='mb-4'>
+              <select  onChange={(e) => setSelectedDeviceId3(e.target.value)} value={selectedDeviceId3}  className='mb-4 font-koulen'>
                 {devices.map((device) => (
-                  <option key={device.deviceId} value={device.deviceId} >
+                  <option key={device.deviceId} value={device.deviceId}  className='font-koulen'>
                     {device.label || `Camera ${device.deviceId}`}
                   </option>
                 ))}
@@ -516,12 +516,12 @@ const VideoStream = () => {
                         </div> 
                      </div>
                       <div className='ml-[14rem] mt-[1rem] font-koulen'>
-                        <h1 className='text-slate-100 text-2xl'>Fressness indication</h1>
-                        <h1 className={`text-2xl mt-[1rem] ${productInfo.confidence < 70 ? 'text-red-500' : 'text-emerald-500'} ${productInfo.confidence.toLowerCase().includes('confidence not available') ? 'ml-[-1rem]' : 'ml-[5.5rem]'}`}>{productInfo.confidence}</h1>
-                        <h1 className='text-slate-100 text-sm/5 ml-[3rem]'>edible range - <span className='text-emerald-500'> 70-100%</span></h1>
-                        <div className='flex flex-row space-x-[8rem] mt-[1rem]'>
-                          <h1 className={`text-md ${productInfo.freshStatus.toLowerCase().includes('rotten') ? 'text-red-500' : 'text-slate-100'}`}>rotten</h1>
-                          <h1 className={`text-md  ${productInfo.freshStatus.toLowerCase().includes('fresh') ? 'text-emerald-500' : 'text-slate-100 '}`}>fresh</h1>
+                        <h1 className='text-slate-100 text-2xl font-koulen'>Freshness indication</h1>
+                        <h1 className={`text-2xl mt-[1rem] font-koulen ${productInfo.confidence < 70 ? 'text-red-500' : 'text-emerald-500'} ${productInfo.confidence.toLowerCase().includes('confidence not available') ? 'ml-[-1rem]' : 'ml-[5.5rem]'}`}>{productInfo.confidence}</h1>
+                        <h1 className='text-slate-100 text-sm/5 ml-[3rem] font-koulen'>edible range - <span className='text-emerald-500'> 70-100%</span></h1>
+                        <div className='flex flex-row space-x-[8rem] mt-[1rem] '>
+                          <h1 className={`text-md font-koulen ${productInfo.freshStatus.toLowerCase().includes('rotten') ? 'text-red-500' : 'text-slate-100'}`}>rotten</h1>
+                          <h1 className={`text-md font-koulen ${productInfo.freshStatus.toLowerCase().includes('fresh') ? 'text-emerald-500' : 'text-slate-100 '}`}>fresh</h1>
                         </div>
                       </div>
                  </div>
@@ -542,11 +542,11 @@ const VideoStream = () => {
             <div className='flex flex-col font-koulen mt-[1rem] space-y-[1rem]  overflow-y-scroll  overflow-x-hidden max-h-[30vh] scrollbar-none'>
               {detaillist.map((data)=>(
                 <div className='' key={uuidv4()}>
-                  <h1 className='text-stone-100 text-xl'>{data.name}</h1>
+                  <h1 className='text-stone-100 text-xl  font-koulen'>{data.name}</h1>
                   <div className='flex flex-row space-x-[5rem]'>
-                    <label className='text-[#9CABBA]'>Expiry date: <span>{data.expiry_date}</span></label>
-                    <label className='text-[#9CABBA]'>MRP: <span>{data.mrp}</span></label>
-                    <label className='text-[#9CABBA]'>Description: <span>{data.description}</span></label>
+                    <label className='text-[#9CABBA] font-koulen'>Expiry date: <span>{data.expiry_date}</span></label>
+                    <label className='text-[#9CABBA]  font-koulen'>MRP: <span>{data.mrp}</span></label>
+                    <label className='text-[#9CABBA] font-koulen'>Description: <span>{data.description}</span></label>
                   </div>
                 </div>
               ))}
