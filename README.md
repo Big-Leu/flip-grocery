@@ -20,7 +20,7 @@ The system is designed to scan grocery items (such as packaged food, fruits, and
 - **Offer Zone**: Promotional offers with discounts on selected items.
 
 ### Inventory Section:
-![Features](/image/3.png)
+![Inventory](/image/3.png)
 
 The application provides an interactive interface for scanning products in a real-time environment using the following features:
 
@@ -68,4 +68,13 @@ The application provides an interactive interface for scanning products in a rea
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Big-Leu/flip-grocery
+   cd frontend
+
+2. How to start the frontend:
+   ```bash
+   npm i
+   npm run dev 
+   
+
+
