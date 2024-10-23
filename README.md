@@ -10,6 +10,8 @@ The system is designed to scan grocery items (such as packaged food, fruits, and
 
 ## Features
 ![Features](/image/2.png)
+
+
 ### Grocery Store Features:
 - **Navigation Bar**: Categories for easy browsing of grocery products such as Dals, Pulses, Ghee & Oils, Spices, Dry Fruits, and more.
 - **Search Functionality**: Users can search for grocery items.
@@ -19,6 +21,7 @@ The system is designed to scan grocery items (such as packaged food, fruits, and
 
 ### Inventory Section:
 ![Features](/image/3.png)
+
 The application provides an interactive interface for scanning products in a real-time environment using the following features:
 
 - **Camera Feeds**:
