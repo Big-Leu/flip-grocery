@@ -518,7 +518,7 @@ const VideoStream = () => {
                       <div className='ml-[14rem] mt-[1rem] font-koulen'>
                         <h1 className='text-slate-100 text-2xl font-koulen'>Freshness indication</h1>
                         <h1 className={`text-2xl mt-[1rem] font-koulen ${productInfo.confidence < 70 ? 'text-red-500' : 'text-emerald-500'} ${productInfo.confidence.toLowerCase().includes('confidence not available') ? 'ml-[-1rem]' : 'ml-[5.5rem]'}`}>{productInfo.confidence}</h1>
-                        <h1 className='text-slate-100 text-sm/5 ml-[3rem] font-koulen'>edible range - <span className='text-emerald-500'> 70-100%</span></h1>
+                        <h1 className='text-slate-100 text-sm/5 ml-[3rem] font-koulen'>Confidence prediction - <span className='text-emerald-500'> 70-100%</span></h1>
                         <div className='flex flex-row space-x-[8rem] mt-[1rem] '>
                           <h1 className={`text-md font-koulen ${productInfo.freshStatus.toLowerCase().includes('rotten') ? 'text-red-500' : 'text-slate-100'}`}>rotten</h1>
                           <h1 className={`text-md font-koulen ${productInfo.freshStatus.toLowerCase().includes('fresh') ? 'text-emerald-500' : 'text-slate-100 '}`}>fresh</h1>
