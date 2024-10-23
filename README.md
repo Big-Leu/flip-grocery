@@ -20,7 +20,7 @@ The system is designed to scan grocery items (such as packaged food, fruits, and
 - **Offer Zone**: Promotional offers with discounts on selected items.
 
 ### Inventory Section:
-![Inventory](/image/3.png)
+![Inventory](/image/4.png)
 
 The application provides an interactive interface for scanning products in a real-time environment using the following features:
 
