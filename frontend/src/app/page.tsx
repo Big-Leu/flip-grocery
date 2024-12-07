@@ -9,7 +9,7 @@ export default function Home() {
     <Navbar />
     <div className="w-full h-[91vh] overflow-y-auto scrollbar-none" >
     <Slider/>
-      <Image src={ds}  width={1536} height={3732} alt=""/>
+      <Image src={ds}   alt=""/>
     </div>
   </div>
   );

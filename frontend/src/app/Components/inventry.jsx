@@ -6,33 +6,6 @@ import * as tf from "@tensorflow/tfjs";
 import * as cocossd from "@tensorflow-models/coco-ssd"
 import { drawRect } from "../Components/utilities";
 
-
-// const data = [
-//   {
-//     "name": "Fortune Sunlite Refined Sunflower Oil",
-//     "expiry_date": "15 July 2023",
-//     "mrp": "15 July 2023",
-//     "description": "15 July 2023"
-//   },
-//   {
-//     "name": "Fortune Sunlite Refined Sunflower Oil",
-//     "expiry_date": "15 July 2023",
-//     "mrp": "15 July 2023",
-//     "description": "15 July 2023"
-//   },
-//   {
-//     "name": "Example Product Name",
-//     "expiry_date": "01 January 2024",
-//     "mrp": "150 INR",
-//     "description": "An example description here"
-//   },
-//   {
-//     "name": "Another Example Product",
-//     "expiry_date": "20 December 2023",
-//     "mrp": "200 INR",
-//     "description": "Another example description here"
-//   }
-// ];
 const VideoStream = () => {
   const videoRef1 = useRef(null);
   const videoRef2 = useRef(null);
