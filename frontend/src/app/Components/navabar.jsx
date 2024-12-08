@@ -39,7 +39,7 @@ const Navbar = () => {
         <div className='flex flex-row items-center space-x-[10%] px-[2%] ml-[2%] min-w-[60%]'>
           <div className='flex space-x-1 font-bold'>
             <div className='mt-1'>
-              <svg width="12" height="16" viewBox="0 0 9 12" class="" xmlns="http://www.w3.org/2000/svg"><path fill="#FFFFFF" class="_2kMlEN" d="M4.2 5.7c-.828 0-1.5-.672-1.5-1.5 0-.398.158-.78.44-1.06.28-.282.662-.44 1.06-.44.828 0 1.5.672 1.5 1.5 0 .398-.158.78-.44 1.06-.28.282-.662.44-1.06.44zm0-5.7C1.88 0 0 1.88 0 4.2 0 7.35 4.2 12 4.2 12s4.2-4.65 4.2-7.8C8.4 1.88 6.52 0 4.2 0z" fill-rule="evenodd"></path></svg>
+              <svg width="12" height="16" viewBox="0 0 9 12" xmlns="http://www.w3.org/2000/svg"><path fill="#FFFFFF" d="M4.2 5.7c-.828 0-1.5-.672-1.5-1.5 0-.398.158-.78.44-1.06.28-.282.662-.44 1.06-.44.828 0 1.5.672 1.5 1.5 0 .398-.158.78-.44 1.06-.28.282-.662.44-1.06.44zm0-5.7C1.88 0 0 1.88 0 4.2 0 7.35 4.2 12 4.2 12s4.2-4.65 4.2-7.8C8.4 1.88 6.52 0 4.2 0z" fillRule="evenodd"></path></svg>
             </div>
             
             <label>Delivery to 781015</label>
@@ -76,8 +76,8 @@ const Navbar = () => {
             <label>Cart</label>
           </div>
         </div>
-        <div className=' absolute right-0 min-h-full bg-green-700'>
-            <img src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/fk_goto_home_logo_small_5b9cdd.svg" alt="Flipkart" title="Flipkart" class="rE8n6d"/>
+        <div className=' absolute right-0 max-h-full bg-green-700'>
+            <img src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/fk_goto_home_logo_small_5b9cdd.svg" alt="Flipkart" title="Flipkart" />
         </div>
       </div>
     </nav>

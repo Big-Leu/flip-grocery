@@ -7,6 +7,7 @@ import * as cocossd from "@tensorflow-models/coco-ssd"
 import { drawRect } from "../Components/utilities";
 
 const VideoStream = () => {
+  const [itemCounts, setItemCounts] = useState({});
   const videoRef1 = useRef(null);
   const videoRef2 = useRef(null);
   const videoRef3 = useRef(null);
@@ -36,6 +37,11 @@ const VideoStream = () => {
   const [model, setModel] = useState(null);
   const URL = "http://localhost:8080"
   const [isReloading,setReloading] = useState(false);
+
+  useEffect(() =>{
+   console.log("the item count is",itemCounts)
+  },[itemCounts])
+  
   const handleClick = async () => {
       try {
         const response = await fetch(`${URL}/api/v1/form/list?page=1&size=50`, {
@@ -118,17 +124,54 @@ const VideoStream = () => {
   });
   
   useEffect(() => {
+    // Skip on server-side
+    if (typeof window === 'undefined') return;
+  
+    let mounted = true;
+    let stream = null;
+  
     const getCameras = async () => {
-      const devices = await navigator.mediaDevices.enumerateDevices();
-      const videoDevices = devices.filter(device => device.kind === 'videoinput');
-      setDevices(videoDevices);
-      
-      setSelectedDeviceId1(videoDevices.length > 0 ? videoDevices[0].deviceId : null);
-      setSelectedDeviceId2(videoDevices.length > 1 ? videoDevices[1].deviceId : null);
-      setSelectedDeviceId3(videoDevices.length > 2 ? videoDevices[2].deviceId : null);
+      try {
+        // Request camera permissions first
+        stream = await navigator.mediaDevices.getUserMedia({ 
+          video: true 
+        });
+  
+        if (!mounted) {
+          stopStream();
+          return;
+        }
+  
+        // Get available devices
+        const devices = await navigator.mediaDevices.enumerateDevices();
+        const videoDevices = devices.filter(device => device.kind === 'videoinput');
+  
+        if (mounted) {
+          setDevices(videoDevices);
+          setSelectedDeviceId1(videoDevices.length > 0 ? videoDevices[0].deviceId : null);
+          setSelectedDeviceId2(videoDevices.length > 1 ? videoDevices[1].deviceId : null);
+          setSelectedDeviceId3(videoDevices.length > 2 ? videoDevices[2].deviceId : null);
+        }
+      } catch (error) {
+        console.error('Camera access error:', error);
+        if (mounted) {
+          setDevices([]);
+        }
+      }
     };
-    
+  
+    const stopStream = () => {
+      if (stream) {
+        stream.getTracks().forEach(track => track.stop());
+      }
+    };
+  
     getCameras();
+  
+    return () => {
+      mounted = false;
+      stopStream();
+    };
   }, []);
   
   useEffect(() => {
@@ -235,6 +278,13 @@ const VideoStream = () => {
                 const detectedBoxes = predictions.filter(prediction =>
                     detectedClasses.includes(prediction.class)
                 );
+
+                const newCounts = {};
+                detectedBoxes.forEach(box => {
+                  const itemClass = box.class;
+                  newCounts[itemClass] = (newCounts[itemClass] || 0) + 1;
+                });
+                setItemCounts(newCounts);
     
                 for (const box of detectedBoxes) {
                     const [x, y, width, height] = box['bbox'];
@@ -248,11 +298,11 @@ const VideoStream = () => {
     
                     // Draw the cropped region from the video directly (not from the main canvas)
                     croppedCtx.drawImage(
-                        video,  // Use the video element as the source
-                        x, y,              // Start cropping at the detected bounding box
-                        width, height,     // Cropping width and height
-                        0, 0,              // Place cropped image at the top-left corner of new canvas
-                        width, height      // Render it at the same size
+                        video, 
+                        x, y,             
+                        width, height,     
+                        0, 0,             
+                        width, height   
                     );
     
                     // Get the cropped frame data as a JPEG image
@@ -383,13 +433,13 @@ const VideoStream = () => {
     <div className=' absolute max-h-[91.8vh] w-full flex flex-row scrollbar-none'>
       <div className="max-h-full min-w-[25%] flex flex-col  overflow-y-auto overflow-x-hidden scrollbar-none bg-white py-5">
         <div className='flex flex-col min-w-full mx-[10%]'>
-          <div className='font-koulen text-stone-900'>
-            <h1 className='text-4xl'>Monitor</h1>
-            <h2 className='text-2xl mt-[.5rem]'>Camera Feeds</h2>
+          <div className=' text-stone-900'>
+            <h1 className='text-4xl font-koulen'>Monitor</h1>
+            <h2 className='text-2xl mt-[.5rem] font-koulen'>Camera Feeds</h2>
           </div>
           <div className=' text-black'>
             <div className='mt-[1rem] font-koulen'>
-              <h1 className='ml-1'>Angle One</h1>
+              <h1 className='ml-1 font-koulen'>Angle One</h1>
               <select  onChange={(e) => setSelectedDeviceId1(e.target.value)} value={selectedDeviceId1}  className='mb-4 font-koulen'>
                 {devices.map((device) => (
                   <option key={device.deviceId} value={device.deviceId} className='font-koulen'>
@@ -413,7 +463,7 @@ const VideoStream = () => {
           </div>
           <div className='text-black'>
             <div className='mt-[1rem] font-koulen'>
-            <h1 className='ml-1'>Angle Two</h1>
+            <h1 className='ml-1 font-koulen'>Angle Two</h1>
               <select  onChange={(e) => setSelectedDeviceId2(e.target.value)} value={selectedDeviceId2}  className='mb-4 font-koulen'>
                 {devices.map((device) => (
                   <option key={device.deviceId} value={device.deviceId} className='font-koulen'>
@@ -437,7 +487,7 @@ const VideoStream = () => {
           </div>
           <div className='text-black'>
             <div className='mt-[1rem] font-koulen'>
-            <h1 className='ml-1'>Angle Three</h1>
+            <h1 className='ml-1 font-koulen'>Angle Three</h1>
               <select  onChange={(e) => setSelectedDeviceId3(e.target.value)} value={selectedDeviceId3}  className='mb-4 font-koulen'>
                 {devices.map((device) => (
                   <option key={device.deviceId} value={device.deviceId}  className='font-koulen'>

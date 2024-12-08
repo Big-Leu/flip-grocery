@@ -1,8 +1,4 @@
 import React from 'react';
-import evv from '../images/chevron_right_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg'
-import Image from "next/image";
-import ss from "../images/Vector1.svg"
-import s2 from "../images/ac8550.webp"
 
 
 const Element2 = () => {

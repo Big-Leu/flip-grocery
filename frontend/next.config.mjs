@@ -1,9 +1,29 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    images: {
-        domains: ['bucket21.s3.amazonaws.com','rukminim2.flixcart.com','newface21.s3.amazonaws.com','E:/ganesh kv-ml/tailwind/src/app/assets/w1.png', 'lh3.googleusercontent.com,','imgs.search.brave.com','lh3.googleusercontent.com'],
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'bucket21.s3.amazonaws.com',
       },
-
+      {
+        protocol: 'https',
+        hostname: 'rukminim2.flixcart.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'newface21.s3.amazonaws.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'lh3.googleusercontent.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'imgs.search.brave.com',
+      },
+    ],
+  },
 };
 
 export default nextConfig;
