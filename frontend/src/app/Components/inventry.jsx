@@ -430,7 +430,7 @@ const VideoStream = () => {
 
 
   return (
-    <div className=' absolute max-h-[91.8vh] w-full flex flex-row scrollbar-none'>
+    <div className=' absolute h-[92.531vh]  w-full flex flex-row scrollbar-none'>
       <div className="max-h-full min-w-[25%] flex flex-col  overflow-y-auto overflow-x-hidden scrollbar-none bg-white py-5">
         <div className='flex flex-col min-w-full mx-[10%]'>
           <div className=' text-stone-900'>

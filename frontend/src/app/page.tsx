@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div className="bg-white">
     <Navbar />
-    <div className="w-full h-[91vh] overflow-y-auto scrollbar-none" >
+    <div className="w-full h-[92.531vh] overflow-y-auto scrollbar-none" >
     <Slider/>
       <Image src={ds}   alt=""/>
     </div>
