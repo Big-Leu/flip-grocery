@@ -71,7 +71,12 @@ const VideoStream = () => {
     try {
       console.log("the data list is",imageList)
       const raw = JSON.stringify(imageList);
-      const response = await fetch(`${URL}/api/v1/form/fill`, {
+      const queryParams = new URLSearchParams();
+      for (const [key, value] of Object.entries(itemCounts)) {
+        queryParams.append('count', value);
+      }
+
+      const response = await fetch(`${URL}/api/v1/form/fill?${queryParams.toString()}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -247,7 +252,7 @@ const VideoStream = () => {
           deviceId: { exact: deviceId },
           width: { ideal: 1920 },
           height: { ideal: 1080 },
-          frameRate: { ideal: 60 },
+          frameRate: { ideal: 30 },
         },
       });
       
@@ -266,7 +271,7 @@ const VideoStream = () => {
                 canvasRef.current.height = videoHeight;
     
                 const predictions = await model.detect(video);
-                // console.log(predictions);
+                console.log(predictions);
     
                 const ctx = canvasRef.current.getContext("2d");
                 ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
@@ -274,7 +279,7 @@ const VideoStream = () => {
                 // Draw the detected objects on the main canvas
                 drawRect(predictions, ctx);
     
-                const detectedClasses = ["bottle", "cup", "apple", "banana"];
+                const detectedClasses = ["bottle", "cup", "apple", "banana","parking meter"];
                 const detectedBoxes = predictions.filter(prediction =>
                     detectedClasses.includes(prediction.class)
                 );
@@ -312,7 +317,7 @@ const VideoStream = () => {
                     sendMessage(JSON.stringify({ image: frameData, class: box['class'] }));
                 }
     
-                const fps = 60;
+                const fps = 30;
                 const delay = 5000 / fps;
                 setTimeout(() => {
                     requestAnimationFrame(detectFrame);
