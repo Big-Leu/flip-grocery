@@ -7,6 +7,20 @@ import * as cocossd from "@tensorflow-models/coco-ssd"
 import { drawRect } from "../Components/utilities";
 
 const VideoStream = () => {
+
+
+  const wsOptions = {
+    options: {
+      headers: {
+        "User-Agent": "Mozilla",
+      }
+    },
+    onOpen: () => console.log('WebSocket connection opened.'),
+    onClose: () => console.log('WebSocket connection closed.'),
+    onError: (event) => console.error('WebSocket error:', event),
+  };
+
+  
   const [itemCounts, setItemCounts] = useState({});
   const videoRef1 = useRef(null);
   const videoRef2 = useRef(null);
@@ -35,7 +49,10 @@ const VideoStream = () => {
     description: "Type of the Object",
   });
   const [model, setModel] = useState(null);
-  const URL = "http://localhost:8080"
+  const URL = "http://localhost:8080";
+  const WEB = "ws://localhost:8080/api/v1/form/ws";
+  // const URL = "http://localhost:8080";
+  // const WEB = "ws://localhost:8080/api/v1/form/ws";
   const [isReloading,setReloading] = useState(false);
 
   useEffect(() =>{
@@ -110,23 +127,11 @@ const VideoStream = () => {
   };
   
   
-  const { sendMessage: sendMessage1, lastMessage: lastMessage1 } = useWebSocket('ws://127.0.0.1:8080/api/v1/form/ws', {
-    onOpen: () => console.log('WebSocket 1 connection opened.'),
-    onClose: () => console.log('WebSocket 1 connection closed.'),
-    onError: (event) => console.error('WebSocket 1 error:', event),
-  });
+  const { sendMessage: sendMessage1, lastMessage: lastMessage1 } = useWebSocket(`${WEB}`, wsOptions);
   
-  const { sendMessage: sendMessage2, lastMessage: lastMessage2 } = useWebSocket('ws://127.0.0.1:8080/api/v1/form/ws', {
-    onOpen: () => console.log('WebSocket 2 connection opened.'),
-    onClose: () => console.log('WebSocket 2 connection closed.'),
-    onError: (event) => console.error('WebSocket 2 error:', event),
-  });
+  const { sendMessage: sendMessage2, lastMessage: lastMessage2 } = useWebSocket(`${WEB}`, wsOptions);
   
-  const { sendMessage: sendMessage3, lastMessage: lastMessage3 } = useWebSocket('ws://127.0.0.1:8080/api/v1/form/ws', {
-    onOpen: () => console.log('WebSocket 3 connection opened.'),
-    onClose: () => console.log('WebSocket 3 connection closed.'),
-    onError: (event) => console.error('WebSocket 3 error:', event),
-  });
+  const { sendMessage: sendMessage3, lastMessage: lastMessage3 } = useWebSocket(`${WEB}`, wsOptions);
   
   useEffect(() => {
     // Skip on server-side
@@ -279,7 +284,7 @@ const VideoStream = () => {
                 // Draw the detected objects on the main canvas
                 drawRect(predictions, ctx);
     
-                const detectedClasses = ["bottle", "cup", "apple", "banana","parking meter"];
+                const detectedClasses = ["bottle", "cup", "apple", "banana","parking meter","book","laptop","clock"];
                 const detectedBoxes = predictions.filter(prediction =>
                     detectedClasses.includes(prediction.class)
                 );
