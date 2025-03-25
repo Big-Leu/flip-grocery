@@ -41,7 +41,7 @@ The application provides an interactive interface for scanning products in a rea
     - Type of Object (packaged product, fruit, vegetable)
 
 - **Freshness Detection (Fruits & Vegetables)**:
-  - For fruits and vegetables, the freshness level is indicated on a scale of Rotten to Fresh with a confidence level ranging from 70% to 100%.
+  - For fruits and vegetables, the freshness level is indicated on a scale ranging from 1 to 10 of Rotten to Fresh with a confidence level ranging from 70% to 100%.
   - Freshness is determined by analyzing the scanned image using TensorFlow-based models.
 
 - **Scanned Items Section**:
